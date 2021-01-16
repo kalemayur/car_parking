@@ -53,14 +53,14 @@ class Parking
     get_slot = []
     @parked_slots.map { |key, values| get_slot << key if values[:color] == color  }
     return p "Slot is not available for color: #{color}" if get_slot.empty?
-    return p get_slot
+    return p get_slot.join(", ")
   end
 
   def get_slot_for_register_number(number)
     get_slot = []
     @parked_slots.map { |key, values| get_slot << key if values[:number] == number }
     return p "Slot is not available for register number: #{number}" if get_slot.empty?
-    return p get_slot
+    return p get_slot.join(", ")
   end
 
   prompt = TTY::Prompt.new

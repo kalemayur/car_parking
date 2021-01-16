@@ -60,15 +60,15 @@ describe Parking do
   end
 
   it 'should return slot number for given color white' do
-    expect(parking.get_slot_for_color("White")).to eq [1, 6, 4]
+    expect(parking.get_slot_for_color("White")).to eq "1, 6, 4"
   end
 
   it 'should return slot number for given register number' do
-    expect(parking.get_slot_for_register_number("KA-01-P-333")).to eq [1]
+    expect(parking.get_slot_for_register_number("KA-01-P-333")).to eq "1"
   end
 
   it 'should return slot number for given register number' do
-    expect(parking.get_slot_for_register_number("KA-01-P-444")).to eq [2]
+    expect(parking.get_slot_for_register_number("KA-01-P-444")).to eq "2"
   end
 
   it 'should return msg if slot number is not available for given register number' do
