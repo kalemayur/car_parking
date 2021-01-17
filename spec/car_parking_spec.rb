@@ -1,5 +1,5 @@
 require 'spec_helper'
-require_relative '../bin/car_parking'
+require_relative '../bin/parking'
 
 describe Parking do
   parking = Parking.new()
@@ -56,7 +56,7 @@ describe Parking do
   end
 
   it 'should return register number for given color white' do
-    expect(parking.get_register_number_for_color("White")).to eq ["KA-01-P-333", "KA-01-P-111", "KA-01-P-0101"]
+    expect(parking.get_register_number_for_color("White")).to eq "KA-01-P-333, KA-01-P-111, KA-01-P-0101"
   end
 
   it 'should return slot number for given color white' do
@@ -73,17 +73,29 @@ describe Parking do
 
   it 'should return msg if slot number is not available for given register number' do
     color = "GREEN"
-    expect(parking.get_slot_for_color(color)).to eq "Slot is not available for color: #{color}"
+    expect(parking.get_slot_for_color(color)).to eq "Not found"
   end
 
   it 'should return msg if slot number is not available for given register number' do
     color = "GREEN"
-    expect(parking.get_register_number_for_color(color)).to eq "Slot is not available for color: #{color}"
+    expect(parking.get_register_number_for_color(color)).to eq "Not found"
   end
 
   it 'should return msg if slot number is not available for given register number' do
     number = "KA-01-P-44445"
-    expect(parking.get_slot_for_register_number(number)).to eq "Slot is not available for register number: #{number}"
+    expect(parking.get_slot_for_register_number(number)).to eq "Not found"
+  end
+
+
+  it 'should return status' do
+    result = {1=>{:color=>"White", :number=>"KA-01-P-333"},
+              2=>{:color=>"Black", :number=>"KA-01-P-444"},
+              3=>{:color=>"Black", :number=>"KA-01-P-222"},
+              4=>{:color=>"White", :number=>"KA-01-P-0101"},
+              5 => {:color=>"Blue", :number=>"KA-01-P-555"},
+              6=>{:color=>"White", :number=>"KA-01-P-111"}
+            }
+    expect(parking.status).to eq result
   end
 
 end
